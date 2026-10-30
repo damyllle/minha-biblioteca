@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title> Minha biblioteca</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head >
+<body>
+<h2>Minha Biblioteca</h2>
+<p>Grandes histórias, sempre por perto.<br>
+    Um espaço dedicado à tecnologia, onde o conhecimento em programação se transforma em novas possibilidades.</p>
+
+</header>
+
+<div id="container">
+<label for="titulo">Escolha um livro: </label>
+<input type="text" id="titulo" placeholder="Digite o nome do livro">
+
+<button onclick="Buscarlivros()">Buscar Livros</button>
+</div>
+
+<div id="livros">
+<h3>Livros em destaque</h3>
+    <div id="resultado"></div>
+</div>
+
+
+<script>
+    async function Buscarlivros() {
+        const titulo = document.getElementById("titulo").value;
+
+        const resposta = await fetch("http://localhost:8080/livros");
+        const livros = await resposta.json();
+
+        const lista = document.getElementById("resultado");
+        lista.innerHTML = "";
+
+        const encontrados = livros.filter((livro) =>
+            livro.titulo.toLowerCase().includes(titulo.toLowerCase())
+        );
+
+        for (const livro of encontrados) {
+            const item = document.createElement("div");
+
+            let capa = "";
+
+            try {
+                const busca = await fetch(
+                    `https://openlibrary.org/search.json?title=${encodeURIComponent(livro.titulo)}&limit=1`
+                );
+
+                const dados = await busca.json();
+                const idCapa = dados.docs?.[0]?.cover_i;
+
+                if (idCapa) {
+                    capa = `https://covers.openlibrary.org/b/id/${idCapa}-M.jpg`;
+                }
+            } catch (erro) {
+                console.log("Não foi possível carregar a capa.");
+            }
+
+            item.innerHTML = `
+                ${capa
+                ? `<img src="${capa}" alt="Capa de ${livro.titulo}" class="capa-livro">`
+                : `<p>Capa não disponível</p>`}
+                <h4>${livro.titulo}</h4>
+                <p>Autor: ${livro.autor}</p>
+                <p>Descrição: ${livro.descricao}</p>
+            `;
+
+            lista.appendChild(item);
+        }
+
+        if (encontrados.length === 0) {
+            lista.textContent = "Nenhum livro encontrado.";
+        }
+    }
+</script>
+
+
+</body>
+</html>

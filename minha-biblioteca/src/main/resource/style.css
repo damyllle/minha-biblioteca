@@ -1,0 +1,217 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #352342;
+    text-align: center;
+    min-height: 100vh;
+
+    background-image: url("./fundo-biblioteca.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.simbolo {
+    display: inline-block;
+    font-size: 48px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 5px 15px rgba(106, 13, 173, 0.12);
+}
+
+h2 {
+    margin: 12px 0 8px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 780;
+    font-size: 36px;
+    color: #6A0DAD;
+}
+
+h3 {
+    font-family: 'Nunito', sans-serif;
+    color: #6A0DAD;
+}
+
+#cabecalho p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #77658b;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 20px auto 28px;
+    padding: 16px 20px;
+    border: 1px solid #d8b4f8;
+    border-radius: 14px;
+    background-color: #ead5fa;
+    box-shadow: 0 4px 12px rgba(106, 13, 173, 0.08);
+}
+
+label {
+    font-size: 14px;
+    color: #352342;
+}
+
+input {
+    width: 270px;
+    max-width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d8b4f8;
+    border-radius: 11px;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #6A0DAD;
+    box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.12);
+}
+
+/* ===== BOTÕES ===== */
+
+button {
+    padding: 13px 20px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #8e44d6, #6A0DAD);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4B087A;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(106, 13, 173, 0.2);
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #665873;
+}
+
+#livros {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 22px;
+    border: 1px solid #e5d4f5;
+    border-radius: 16px;
+    background-color: #fdfaff;
+    color: #352342;
+    font-size: 14px;
+    text-align: left;
+    box-shadow: 0 5px 18px rgba(106, 13, 173, 0.08);
+    transition: 0.3s;
+}
+
+#livros:hover {
+    background-color: #f5eaff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(106, 13, 173, 0.15);
+}
+
+#resultado {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+#resultado > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #e5d4f5;
+    border-radius: 16px;
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(106, 13, 173, 0.08);
+    transition: 0.3s;
+}
+
+#resultado > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(106, 13, 173, 0.15);
+}
+
+#resultado > div h4,
+#resultado > div p {
+    margin-top: 0;
+}
+
+/* ===== CAPAS DOS LIVROS ===== */
+
+.capa-livro {
+    width: 130px;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px #0002;
+    margin-bottom: 10px;
+}
+
+/* ===== CELULARES ===== */
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px 12px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    #cabecalho {
+        padding: 15px 5px;
+    }
+
+    #container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    #container button {
+        width: 100%;
+    }
+
+    #livros {
+        width: 100%;
+        padding: 16px;
+    }
+
+    #resultado {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}
